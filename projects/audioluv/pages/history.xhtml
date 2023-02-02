@@ -1,0 +1,10 @@
+<set style=background >--background</set>
+<set attr=static >true</set>
+<bar><icon history.back>chevron left</icon>History</bar>
+<create var=history sync=local>[]</create>
+<create var=current >{}</create>
+
+<loading if="!(history&&history.length)">Go listen to some music bruh.</loading>
+<list #history from=history onitemclick.script="current=this.event.value;echo('<modal src=preview.xhtml />')">
+  <item><img src="((history.src))" /><text>((history.title))<subtext>((history.channel)) • ((history.duration))</subtext></text></item>
+</list>

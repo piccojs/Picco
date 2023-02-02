@@ -1,0 +1,45 @@
+<!--add to history-->
+<create var=history sync=local >[]</create>
+<script>
+  history=history.filter(e=>e.id!==current.id)
+  history.unshift(current)
+</script>
+
+<style >
+  
+  this img{
+    width:130px;
+    height:100px;
+    object-fit:cover;
+    border-radius:8px;
+    box-shadow:0 0 3px 3px --shadow;
+  }
+  
+  this text{
+  flex-direction:column;
+  margin:10px;
+  font-size:20px;
+  width:calc(100% - 160px);
+}
+
+  this subtext{
+  font-size:15px;
+  color:--accent;
+}
+</style>
+<create var=saves sync=local >[]</create>
+<bar -background=--background -margin-top=auto><icon history.back>chevron left</icon>Preview</bar>
+<piece -background=--background -width=100% -height=120px -padding=10px from=current>
+  <img src="((current.src))"/><text>((current.title))<subtext>((current.channel)) • ((current.duration))</subtext></text></piece>
+  
+<strap -color=--accent -background=--background from=current>
+  <audio #audio on.ended.script="this.currentTime=0;this.play()" preload=metadata src="https://supa-backend.onrender.com?q=((current.id))" on.play.="<set target=#audc>Pause</set>" on.pause.="<set target=#audc>Play</set>" on.error.="<set attr=src>https://supa-backend.onrender.com?q=((current.id))</set>" on.timeupdate.script="progress.style.width=(this.currentTime / this.duration)*100+'%'"></audio>
+  <page id=audc on.click.script="let aud=document.getElementById('audio');if(aud.paused)aud.play();else aud.pause()" >Listen</page>•
+  <page on.click.script="location.href='https://supa-backend.onrender.com?q=((current.id))'">Download</page>•
+  <page on.click.script="saves=saves.filter(e=>e.id!==current.id);saves.unshift(current);this.style.color='var(--accent)';this.innerText='Saved'">Save</page>•
+  <page on.click.script="alert('the share api is under construction')">Share</page></strap>
+
+<!--progress-->
+<div -width=100% -height=5px -background=--background -opacity=.95><div #buffer -width=100% -height=5px -background=--accent -opacity=.35 ></div><div #progress -width=0% -height=5px -background=--accent -position=absolute ></div></div>
+
+<disclaimer -display=block -color=white -background=--accent -width=100% -padding=10px -font-size=10px><b -display=inline>Disclaimer: </b>AudioLuv is not in any way affiliated with the currently presented content or its creator, nor does it store said content in a database. This was retrieved from YouTube's database.</disclaimer>

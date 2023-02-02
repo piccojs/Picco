@@ -1,0 +1,21 @@
+<set style=background >--background</set>
+<set attr=static >true</set>
+<bar><icon history.back>chevron left</icon>Saved tracks</bar>
+<create var=saves sync=local >[]</create>
+
+<!-- shortcut to channels, sectioning featuring channel-->
+<create var=channels >[]</create>
+<create var=currentchannel ></create>
+<radio-list from=channels on.itemclick.script="currentchannel=this.event.value"><radio-button>((channels.value))</radio-button></radio-list>
+<script>
+  saves.forEach(e=>channels.includes(e.channel)?"":channels.unshift(e.channel))
+</script>
+
+<!--saved playlist-->
+<loading if="!(saves&&saves.length)">Go save some music bruh.</loading>
+<list #saves from=saves on.itemclick.script="current=this.event.value;echo('<modal src=player.xhtml />')">
+<item><img src="((saves.src))"/><text>((saves.title))<subtext>((saves.channel)) • ((saves.duration))</subtext></text></item>
+</list>
+
+<!--shuffle button-->
+<icon #shuffle -bottom=20px -right=20px -position=fixed -background=#e91e6340 -color=--accent -width=70px -height=70px -padding=25px -border-radius=100% on.click.script="saves=saves.map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value);current=saves[0];echo('<modal src=player.xhtml />')">shuffle</icon>

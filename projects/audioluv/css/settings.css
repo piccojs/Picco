@@ -1,0 +1,16 @@
+sett-piece{
+  margin:10px 5px;
+  flex-direction:column;
+}
+
+sett-piece title {
+  color:--accent;
+  font-size:25px;
+  margin:12px;
+}
+
+sett-piece item{
+  margin:6px 20px;
+  font-size:20px;
+  
+}

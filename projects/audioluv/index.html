@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <script src=//piccojs.github.io/picco.js title="AudioLuv" description="For the music addicts." icon="favicon.ico"></script>
+</head>
+
+<body theme=dark>
+  <!--style deps-->
+  <import libs="base.css,core.css,search.css,settings.css,player.css" from=css><load -display=flex -width=100% -height=100vh -align-items=center -justify-content=center><style>*{overflow:hidden}</style><img src=icon.png -width=100px -height=100px /></load></import>
+  <!--script depa-->
+  <import libs="icon,event,modal,event.itemclick,event.enter,history" from=picco></import>
+  <!--save search string-->
+  <create var=searchstr ></create>
+  
+  
+  <!--base with scrolling img & all-->
+  <part #main >
+    <!--scrolling album covers-->
+    <img #background  -align-self=flex-start -justify-self=flex-start src="cover.png"-width=100% -height=100% -position=absolute -object-fit=cover -opacity=.7 />
+    <part #faded -position=absolute -background="linear-gradient(to bottom,transparent,#000)"></part>
+    <!--title-->
+    <text #title>AudioLuv</text>
+    <text #subtitle>For the music addicts.</text>
+    <!--manage history and current track-->
+    <create var=history sync=local>[]</create>
+    <create var=current >{}</create>
+      <tray from=history on.itemclick.script="current=this.event.value;echo('<modal src=pages/preview.xhtml />')"><item><img src="((history.src))"/><subtext>((history.title))</subtext></item></tray>
+    
+    
+    <!--input-->
+    <searchbar><input placeholder="search track or atrist..." -width=100%></searchbar>
+    <event target="searchbar input" type=enter.blur >
+      <v:searchstr><get target="searchbar input" attribute=value >joji</get></v:searchstr>
+      <modal src=pages/search.xhtml />
+    </event>
+    
+    <!--bottom nav pages-->
+    <strap -color=--accent><page open="pages/discover.xhtml">Discover</page>•<page open="pages/saved.xhtml">Saved tracks</page>•<page open="pages/history.xhtml">History</page>•<page open="pages/settings.xhtml">Settings</page></strap>
+  </part>
+  
+  
+</body>
+
+</html>

@@ -1,0 +1,220 @@
+<!--external resources (splash screen)-->
+<import libs=core.css from="./" ><loader -height=100% -width=100% -display=flex -align-items=center -justify-content=center><prog -display=flex -width=200px -height=5px -background=#101010 -margin=15px><progfill -background=#00beff -width=100px -height=5px ></progfill></prog></loader></import>
+<import libs=icon,event from=picco ><loader -height=100% -width=100% -display=flex -align-items=center -justify-content=center><prog -display=flex -width=200px -height=5px -background=#101010 -margin=15px><progfill -background=#00beff -width=180px -height=5px ></progfill></prog></loader></import>
+
+<!-- intro page includes 2 blazes , a comet and sputnik right below-->
+  <part #deep-space>
+    <stars -align-self=flex-start -justify-self=flex-start -background-image="url(assets/background/space.png)" -background-repeat=repeat-x -background-size=contain -width=1000% -height=100% -position=absolute -animation="scroll 400s infinite linear"></stars>
+    <img .sprite.comet src=assets/comet.png -width=60px -transform=rotate(270deg) -animation="streak 15s linear infinite">
+    <img .sprite.blaze src=assets/blaze.png -top=10px -width=40px -transform=rotate(90deg) -animation="streak 8s linear infinite reverse">
+    <img .sprite.blaze src=assets/blaze.png -top=80% -width=40px -transform=rotate(90deg) -animation="streak 10s linear infinite reverse">
+    <img .sprite.sputnik src=assets/sputnik.png -animation="scroll-left-spin 30s linear infinite" -bottom=5px -width=50px>
+    <text>Hi! I'm <subh -color=#00add8>Faizel Garoeb</subh>, a software dev.</text>
+    <text>Want to know me? scroll down.</text>
+    <space -margin=30px ></space>
+    <contact -color=#00ccff -margin=20px -display=flex -align-items=center><icon -margin=5px>telephone fill</icon>view contact info</contact>
+    <event target=contact :click>
+      <script>location.href="#ground"</script>
+    </event>
+    </event>
+  </part>
+  
+  <part #asteroids>
+    <img .sprite.asteroid src=assets/asteroid1.png -top=52% -width=60px -animation="scroll-right-spin 35s linear infinite">
+    <img .sprite.asteroid src=assets/asteroid2.png -top=42% -width=60px -animation="scroll-right-spin 50s linear infinite">
+    <img .sprite.asteroid src=assets/asteroid3.png -top=32% -width=60px -animation="scroll-right-spin 55s linear infinite">
+    <img .sprite.asteroid src=assets/asteroid4.png -top=22% -width=60px -animation="scroll-right-spin 45s linear infinite">
+    
+    <img .sprite.asteroid src=assets/asteroid1.png -top=20% -width=80px -animation="scroll-right-spin 20s linear infinite">
+    <img .sprite.asteroid src=assets/asteroid2.png -top=30% -width=80px -animation="scroll-right-spin 10s linear infinite">
+    <img .sprite.asteroid src=assets/asteroid3.png -top=40% -width=80px -animation="scroll-right-spin 30s linear infinite">
+    <img .sprite.asteroid src=assets/asteroid4.png -top=50% -width=80px -animation="scroll-right-spin 15s linear infinite">
+    
+    <img .sprite.asteroid src=assets/asteroid3.png -top=26% -width=100px -animation="scroll-right-spin 27s linear infinite">
+    <img .sprite.asteroid src=assets/asteroid1.png -top=36% -width=100px -animation="scroll-right-spin 12s linear infinite">
+    <img .sprite.asteroid src=assets/asteroid4.png -top=46% -width=100px -animation="scroll-right-spin 17s linear infinite">
+    <img .sprite.asteroid src=assets/asteroid2.png -top=56% -width=100px -animation="scroll-right-spin 23s linear infinite">
+    
+    <text>I'm a self taught full stack web developer and designer. I'm fluent in anything <hight -color=#00ccff -font-weight=500>JavaScript</hight>, frontend or backend, but I also dibble dabble in the arts of <subh -color=#00add8>Python, PHP and Lua.</subh></text>
+  </part>
+  
+  <part #moon-ufo-cow>
+    <style>
+      this list {
+        display:flex;
+        flex:0 1 auto;
+        overflow:auto;
+        width:100%;
+        padding:0px 50%;
+        align-items:stretch;
+        scroll-snap-type: both mandatory;
+      }
+      
+      this item{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 50px;
+        align-items:start;
+        border-left:#00ccff solid 2px;
+        margin:30px;
+        padding:10px;
+        scroll-snap-align: center;
+      }
+      this item *{
+        padding:10px;
+        white-space:nowrap;
+      }
+      
+      this subhead{
+        color:#00ccff;
+        font-size:20px;
+        font-weight: 300;
+      }
+      
+      this value{
+        display:flex;
+        align-items:center;
+      }
+      
+    </style>
+    <img .sprite.moon -top=10px -left=10px -width=100px -border-radius=100% -background=#ffffff20 -box-shadow="0px 0px 3px 3px #ffffff20" src=assets/moon.png />
+    <img .sprite.ufo -width=55px -animation="scroll-right 90s linear infinite" -top=80% src=assets/ufo.png>
+    <img .sprite.ufo -width=70px -animation="scroll-right 40s linear infinite" -top=82% src=assets/ufo.png>
+    <img .sprite.ufo -width=65px -animation="scroll-right 60s linear infinite" -top=84% src=assets/ufo.png>
+    <img .sprite.ufo -width=80px -animation="scroll-right 30s linear infinite" -top=78% src=assets/ufo.png>
+    <img .sprite.betsy src=assets/betsy.png>
+    <heading>Technologies I use</heading>
+    <list>
+      <item>
+        <subhead>Languages</subhead>
+        <span></span>
+        <value><img/>HTML</value>
+        <value><img/>CSS</value>
+        <value><img/>JavaScript</value>
+        <value><img/>TypeScript</value>
+        <value><img/>Python</value>
+        <value><img/>Lua</value>
+        <value><img/>PHP</value>
+        <value><img/>NodeJS</value>
+      </item>
+      <item>
+        <subhead>App builders</subhead>
+        <span></span>
+        <value><img/>Electron</value>
+        <value><img/>Tauri</value>
+        <value><img/>Apache Cordova</value>
+      </item>
+      <item>
+        <subhead>Backends</subhead>
+        <span></span>
+        <value><img/>Firebase</value>
+        <value><img/>Google Cloud Console</value>
+        <value><img/>Render</value>
+        <value><img/>Vercel</value>
+        <value><img/>Heroku</value>
+        <value><img/>Supabase</value>
+        <value><img/>RestDB.io</value>
+        <value><img/>Github Pages</value>
+      </item>
+      <item>
+        <subhead>Services</subhead>
+        <span></span>
+        <value><img/>Auth0</value>
+        <value><img/>Stripe</value>
+        <value><img/>Github</value>
+        <value><img/>Porkbun</value>
+        <value><img/>GoDaddy</value>
+      </item>
+      <item>
+        <subhead>Databases</subhead>
+        <span></span>
+        <value><img/>CloudStore</value>
+        <value><img/>MongoDB</value>
+        <value><img/>MySQL</value>
+        <value><img/>MariaDB</value>
+      </item>
+      <item>
+        <subhead>Tools</subhead>
+        <span></span>
+        <value><img/>VSCode</value>
+        <value><img/>Unity</value>
+        <value><img/>Git</value>
+      </item>
+    </list>
+  </part>
+  
+  <part #satelite>
+    <img .sprite.satelite src=assets/satelite.png -top=30% -width=80px -animation="scroll-left-spin 100s linear infinite">
+    <style>
+      this list{
+        display:flex;
+        width:90%;
+        max-width:500px;
+        
+      }
+      
+      this item{
+        color:#ccc;
+        padding:20px;
+        margin:10px;
+        background:#00000020;
+        border-radius:0px;
+        box-shadow: 0px 0px 2px 2px #00ccff;
+        padding-bottom:25px;
+      }
+      
+      this subhead{
+        color:#00ccff;
+        font-size:20px;
+        font-weight:300;
+        display:flex;
+        align-items:center;
+        margin:5px 0px;
+      }
+      this a{
+        color:inherit;
+        
+      }
+    </style>
+    <heading -margin=25px>Personal Projects</heading>
+    <list>
+      <item>
+        <subhead><img src=projecticons/picco.png/><a href=//piccojs.github.io>Picco</a></subhead>
+        A JavaScript framework designed to add flaire to html by bringing the logic to the ui. Packed with features like reactive data binding, scoped css, scoped scripts and more under 15kb unzipped.
+        
+      </item>
+      <item>
+        <subhead><img src=projecticons/audioluv.png/><a href=//piccojs.github.io/projects/audioluv>AudioLuv</a></subhead>
+        A music streaming service capable of creating and sharing playlists, listening online or downloading offline and other features a music player should (lets not discuss the legality of this project yet).
+      </item>
+      
+    </list>
+  </part>
+  
+  <part #clouds-planes>
+    <img .sprite.sun -width=40px -animation="sunloon 1000s ease-out infinite" -border-radius=100% -background-color=#ffbe0050 -box-shadow="0px 0px 3px 3px #ffbe0050" -top=5% src=assets/sun.png>
+    <img .sprite.balloon -width=50px -animation="sunloon 400s ease-out infinite" -top=50% src=assets/balloon.png>
+    <img .sprite.cloud -width=200px -animation="scroll-right 70s linear infinite" -top=35% src=assets/cloud1.png>
+    <img .sprite.cloud -width=210px -animation="scroll-right 55s linear infinite" -top=25% src=assets/cloud2.png>
+    <img .sprite.cloud -width=180px -animation="scroll-right 25s linear infinite" -top=20% src=assets/cloud3.png>
+    <img .sprite.cloud -width=280px -animation="scroll-right 100s linear infinite" -top=15% src=assets/cloud1.png>
+    <img .sprite.cloud -width=190px -animation="scroll-right 95s linear infinite" -top=45% src=assets/cloud2.png>
+    <img .sprite.cloud -width=150px -animation="scroll-right 65s linear infinite" -top=5% src=assets/cloud1.png>
+  <text -text-shadow="#000 0 0 2px">My interests outside programming are nature, lofi music, cooking, romcom horrors, puppies, kittens and anything <span -color=#aaebfb>Pixel art</span> related ... also I like clouds ( still don't know why).</text>
+  <img .sprite.cloud -width=165px -animation="scroll-right 30s linear infinite" -top=15% src=assets/cloud3.png>
+  <img .sprite.cloud -width=180px -animation="scroll-right 40s linear infinite" -top=30% src=assets/cloud1.png>
+  </part>
+  
+  <part #ground>
+    
+    <heading>Wanna be in contact?</heading>
+    <text>email: dealdreygaroeb@gmail.com</text>
+    <text>Cell / app : +264857646415 or +264814927041</text>
+    <text -margin="20px 70px" -color=#cef5ff>or just put up a bat shaped light in the sky and I'll surely pop up... 'cause I'm Batman!</text>
+    
+  </part>
+  
+  <part #underground -background="linear-gradient(to bottom,#20100c,#0a0504)">
+    <img .underground.sprite src=assets/background/underground.png -width=100% -height=100% -opacity=.3 -object-fit=cover >
+   <text -font-size=15px >made with ❤️ and <a href="//piccojs.github.io">Picco</a>.<br/>Copyright © 2023</text>
+  </part>

@@ -1,0 +1,140 @@
+  *{
+    color:white;
+    position:relative;
+    scroll-behavior: smooth;
+    text-shadow:#000000 0 0 2px;
+    font-family: Sans-Serif;
+    box-sizing:border-box;
+  }
+  
+  img{
+    width:10px;
+    height:10px;
+    border-radius:100%;
+    margin:10px;
+  }
+  img.sprite{
+    position:absolute;
+    border-radius:0px;
+    height:auto;
+  }
+  
+  body { 
+    border:0;
+    margin:0;
+    padding:0;
+    background:linear-gradient(to bottom,#000,#010829,#010c45,#02113c,#00ccff,#87e5fd,#87e5fa);
+    min-height:100vh;
+  }
+  
+  part{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      height:100%;
+      position:relative;
+      overflow:hidden;
+    }
+  text{
+    font-size:20px;
+    max-width:400px;
+    margin:5px 15px;
+    text-align:center;
+  }
+  heading{font-size:30px;font-weight:500}
+
+    svg{
+      fill:#00ccff;
+    }
+    
+    /*Betsy the flying cow*/
+   img.betsy{
+     animation:betsy 70s linear infinite;
+     z-index:3;
+   }
+   
+   @keyframes betsy{
+     from{
+       left:110%;
+       top:0%;
+       transform:rotate(0deg);
+       width:40px;
+       z-index:2;
+       
+     }
+     to{
+       left:60px;
+       top:60px;
+       transform:rotate(2000deg);
+       width:0px;
+       z-index:initial;
+     }
+   }
+   
+   /*for ufos and clouds*/
+   .cloud{opacity:.95;}
+   
+   @keyframes scroll-right{
+     from{
+       left:-100%;
+     }
+     to{
+       left:100%;
+     }
+   }
+   
+   /*satelite and sputnik*/
+      @keyframes scroll-left-spin{
+     from{
+       right:-100%;
+       transform:rotate(0deg);
+     }
+     to{
+       right:100%;
+       transform:rotate(1000deg);
+     }
+   }
+   /*asteroids*/
+   @keyframes scroll-right-spin{
+     from{
+       left:-100%;
+       transform:rotate(0deg);
+     }
+     to{
+       left:100%;
+       transform:rotate(1000deg);
+     }
+   }
+   
+   /*comet*/
+   @keyframes streak{
+     from{
+       right:-300%;
+     }
+     to{
+       right:3000%;
+     }
+   }
+   
+   /*sun and balloon*/
+   
+   @keyframes sunloon{
+     from{
+       right:100%;
+     }
+     to{
+       right:-50%;
+     }
+   }
+   
+  /*starry background*/
+  @keyframes scroll{
+    from{
+      left:0%;
+    } 
+    to{
+      left:-900%;
+    }
+  }

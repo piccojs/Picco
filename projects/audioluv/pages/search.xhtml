@@ -1,0 +1,26 @@
+<set style=background >--background</set>
+<set attr=static >true</set>
+<bar from=searchstr><icon history.back>chevron left</icon>((searchstr.value))</bar>
+
+<loading>loading please wait...</loading>
+<!--search result setup list-->
+<create var=results >[]</create>
+<create var=current >{}</create>
+<list #results from=results on.itemclick.script="current=this.event.value;echo('<modal src=preview.xhtml />')">
+<item><img src="((results.src))"/><text>((results.title))<subtext>((results.channel)) • ((results.duration))</subtext></text></item>
+</list>
+
+<script>
+  let res=await app.fetch("https://audio-luv.vercel.app/api/search?q="+searchstr)
+  if(!res.ok){
+    this.querySelector("loading").innerText="Oops, something went wrong!";
+    console.warn(res)}
+  else {
+    
+    if(res.json&&res.json.length){
+      results=res.json
+      this.querySelector("loading").remove()
+    }else this.querySelector("loading").innerText="no results found... :(";
+  }
+</script>
+

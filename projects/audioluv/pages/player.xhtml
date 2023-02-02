@@ -1,0 +1,96 @@
+<style>
+  this{
+    background:black;
+    flex-direction:row;
+    scroll-snap-type:x mandatory;
+  }
+  
+  this>*{scroll-snap-align:start}
+  
+  this playlist{
+    width:100%;
+    height:100%;
+    overflow:scroll;
+    background:#00000040;
+    flex-direction:column;
+  }
+  
+  this bar{
+    background:#00000099;
+  }
+</style>
+<set attr=id >player</set>
+<set attr=static >true</set>
+  <audio #audio preload=metadata  
+  on.timeupdate.script="progress.style.width=(this.currentTime / (this.duration||0))*100+'%';before.innerText=new Date(this.currentTime * 1000).toISOString().substring(14, 19);after.innerText=new Date((this.duration||0) * 1000).toISOString().substring(14, 19)" 
+  on.play.script="play.style.display='none';pause.style.display='flex'" 
+  on.pause.script="play.style.display='flex';pause.style.display='none'" 
+  on.ended=next on.error.script="play.style.color='red'"></audio>
+  
+<player from=current >
+  <img .bg src="((current.src))"/>
+  <pre-part>
+
+    <img src="((current.src))"/>
+  </pre-part>
+  <post-part>
+    <title>((current.title))</title>
+    <subtitle >((current.channel))</subtitle>
+    
+    <!--control panel-->
+    <controls -width=100% -align-items=center -justify-content=space-evenly  -margin=auto>
+    <icon -width=24px on.click.script="document.querySelector('#player').scroll({left:1000,top:0,behavior:'smooth'})">list</icon>
+    <icon  -width=34px on.click=prev >skip-start</icon>
+    <icon #play -width=84px -display=none on.click.script=audio.play()>play</icon><icon -width=84px #pause on.click.script=audio.pause()>pause</icon>
+    <icon onclick=next  -width=34px on.click=next>skip-end</icon>
+    <icon -width=24px #repeat on.click.script="if(audio.loop){audio.loop=false;this.style.color='var(--text)'}else {audio.loop=true;this.style.color='var(--accent)'}">repeat</icon>
+    </controls>
+    
+    <!--duration bar-->
+     <prinfo><text #before>00:00</text><prog><prog-part #progress></prog-part></prog><text #after>00:00</text></prinfo>
+     <!--bottom nav pages-->
+    <strap -color=--accent><page>Download</page>•<page >Lyrics</page>•<page >Youtube</page>•<page >Share</page></strap>
+  </post-part>
+
+  <script>
+  if(audio.loop)repeat.style.color="#e91e63"
+    audio.src="https://supa-backend.onrender.com?q=((current.id))"
+    audio.play()
+  </script>
+  
+  <!--control the audio-->
+  <script #next>
+    for(let i=0;i<saves.length;i++){
+      if(saves[i].id==current.id){
+        current=saves[i+1]||saves[0]||current
+        break;
+      }
+    }
+  </script>
+  <script #prev>
+  if(audio.currentTime>6){
+    audio.currentTime=0
+    audio.play()
+    return;
+  }
+    for(let i=0;i<saves.length;i++){
+      if(saves[i].id==current.id){
+        current=saves[i-1]||saves[saves.length-1]||saves[0]||current
+        break;
+      }
+    }
+  </script>
+</player>
+<playlist from=current>
+  <bar><icon on.click.script="document.querySelector('#player').scroll({left:-1000,top:0,behavior:'smooth'})">chevron left</icon>Current Queue<icon #shuffle -margin-left=auto on.click.script="saves=saves.map(value => ({ value, sort: Math.random() })).sort((a, b) => a.sort - b.sort).map(({ value }) => value);current=saves[0];document.querySelector('#player').scroll({left:-1000,top:0,behavior:'smooth'})">shuffle</icon></bar>
+  <list #playlist from=saves on.itemclick.script="if(this.event.preroot.tagName=='ICON')saves=saves.filter(e=>e.id!==this.event.value.id);else {current=this.event.value;document.querySelector('#player').scroll({left:-1000,top:0,behavior:'smooth'})}">
+<item ><icon>x</icon><text vid="((saves.id))">((saves.title))<subtext>((saves.channel)) • ((saves.duration))</subtext></text><script>
+  playlist.querySelector(`[vid="${current.id}"]`).style.color="#e91e63"
+</script></item>
+</list>
+<script>
+  playlist.querySelector(`[vid="${current.id}"]`).style.color="#e91e63"
+</script>
+<!--shuffle button-->
+
+</playlist>
